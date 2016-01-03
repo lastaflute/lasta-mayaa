@@ -18,6 +18,8 @@ package org.lastaflute.mayaa.servlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.dbflute.util.Srl;
+import org.lastaflute.web.util.LaServletContextUtil;
 import org.seasar.mayaa.impl.MayaaServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +31,7 @@ public class LastaMayaaServlet extends MayaaServlet {
 
     private static final long serialVersionUID = 1L;
     private static final Logger logger = LoggerFactory.getLogger(LastaMayaaServlet.class);
+    public static final String MAYAALIKE_SUFFIX = ".mayaalike.html";
 
     @Override
     public void init() {
@@ -40,5 +43,34 @@ public class LastaMayaaServlet extends MayaaServlet {
     protected void doService(HttpServletRequest request, HttpServletResponse response) {
         logger.debug("#flow ...Routing as #mayaa template: {}", request.getRequestURI());
         super.doService(request, response);
+    }
+
+    // ===================================================================================
+    //                                                             Mayaa Template Handling
+    //                                                             =======================
+    public static boolean isMayaaTemplate(String routingPath) {
+        final String mayaaPath = getMayaaViewPrefix() + convertToMayaaPath(routingPath);
+        return LaServletContextUtil.getServletContext().getResourceAsStream(mayaaPath) != null;
+    }
+
+    public static String getMayaaViewPrefix() {
+        return LaServletContextUtil.getHtmlViewPrefix(); // same as lastaflute's policy
+    }
+
+    public static String prepareMayaalikeHtmlPath(String routingPath) {
+        final String mayaalikeSuffix = MAYAALIKE_SUFFIX;
+        if (routingPath.contains(mayaalikeSuffix)) { // already mayaa-like
+            return routingPath;
+        } else {
+            return Srl.replace(routingPath, mayaalikeSuffix, ".html");
+        }
+    }
+
+    public static String removeMayaalikeMark(String routingPath) {
+        return Srl.replace(routingPath, MAYAALIKE_SUFFIX, ".html");
+    }
+
+    public static String convertToMayaaPath(String routingPath) {
+        return Srl.substringLastFront(removeMayaalikeMark(routingPath), ".html") + ".mayaa";
     }
 }
