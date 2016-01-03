@@ -19,5 +19,5 @@ Apache License 2.0
 comming soon...
 
 # Thanks, Friends
-Lasta Thymeleaf is used by:  
+Lasta Mayaa is used by:  
 comming soon...
