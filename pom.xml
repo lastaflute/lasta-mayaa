@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.lastaflute.html</groupId>
 	<artifactId>lasta-mayaa</artifactId>
-	<version>0.2.0-C-SNAPSHOT</version>
+	<version>0.2.0-D-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Lasta Mayaa</name>
@@ -13,10 +13,10 @@
 
 	<properties>
 		<lastaflute.version>0.7.5</lastaflute.version>
-		<lasta.taglib.version>0.6.7</lasta.taglib.version> <!-- for mayaa -->
+		<lasta.taglib.version>0.6.7</lasta.taglib.version> <!-- for #mayaa -->
 		<mayaa.version>1.1.32</mayaa.version>
 		<servlet.version>3.1.0</servlet.version>
-		<jsp.version>2.3.1</jsp.version> <!-- for mayaa -->
+		<jsp.version>2.3.1</jsp.version> <!-- for #mayaa -->
 		<slf4j.version>1.7.12</slf4j.version>
 		<utflute.version>0.6.0C</utflute.version>
 		<junit.version>4.8.2</junit.version> <!-- latest version without hamcrest -->
@@ -186,7 +186,7 @@
 	</build>
 
 	<repositories>
-		<repository> <!-- for mayaa -->
+		<repository> <!-- for #mayaa -->
 			<id>maven.seasar.org</id>
 			<url>http://maven.seasar.org/maven2</url>
 		</repository>
@@ -202,14 +202,14 @@
 			<artifactId>lastaflute</artifactId>
 			<version>${lastaflute.version}</version>
 		</dependency>
-		<dependency> <!-- for mayaa -->
+		<dependency> <!-- for #mayaa #thiking: need it? -->
 			<groupId>org.lastaflute</groupId>
 			<artifactId>lasta-taglib</artifactId>
 			<version>${lasta.taglib.version}</version>
 		</dependency>
 
 		<!-- html template -->
-        <dependency>
+        <dependency> <!-- for #mayaa -->
             <groupId>org.seasar.mayaa</groupId>
             <artifactId>mayaa</artifactId>
             <version>${mayaa.version}</version>
@@ -228,7 +228,7 @@
 			<version>${servlet.version}</version>
 			<scope>provided</scope> <!-- servlet container provides -->
 		</dependency>
-		<dependency>
+		<dependency> <!-- for #mayaa -->
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>javax.servlet.jsp-api</artifactId>
 			<version>${jsp.version}</version>

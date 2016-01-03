@@ -15,6 +15,8 @@
  */
 package org.lastaflute.mayaa;
 
+import org.lastaflute.core.util.ContainerUtil;
+import org.lastaflute.mayaa.policy.LaMayaaPolicy;
 import org.lastaflute.web.response.HtmlResponse;
 import org.lastaflute.web.ruts.NextJourney;
 import org.lastaflute.web.ruts.process.ActionRuntime;
@@ -24,6 +26,7 @@ import org.lastaflute.web.ruts.renderer.HtmlRenderingProvider;
 /**
  * Mayaa rendering provider of Lastaflute.
  * @author jflute
+ * @since 0.2.0 (2016/01/03 Sunday)
  */
 public class MayaaRenderingProvider implements HtmlRenderingProvider {
 
@@ -55,6 +58,7 @@ public class MayaaRenderingProvider implements HtmlRenderingProvider {
 
     @Override
     public HtmlResponse provideShowErrorsResponse(ActionRuntime runtime) {
-        return HtmlResponse.fromForwardPath("/error/show_errors.xhtml");
+        final LaMayaaPolicy policy = ContainerUtil.getComponent(LaMayaaPolicy.class); // #for_now want to cache
+        return HtmlResponse.fromForwardPath(policy.provideShowErrorsPath());
     }
 }
